@@ -6,7 +6,6 @@ function ThemeToggle() {
   });
 
   useEffect(() => {
-    console.log("Dark mode is:", isDark); // Add this line to debug
     if (isDark) {
       document.documentElement.classList.add("dark");
     } else {
