@@ -26,7 +26,7 @@ function TaskForm({ onAddTask }) {
         className="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 shadow-md transition-all"
         onClick={handleAdd}
       >
-        Add
+        Add Task
       </button>
     </div>
   );

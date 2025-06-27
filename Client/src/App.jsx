@@ -61,7 +61,7 @@ function App() {
       <ThemeToggle />
       <Toaster position="top-center" />
       <div className="max-w-2xl mx-auto bg-white dark:bg-gray-900 shadow-lg rounded-xl p-6 border dark:border-gray-700 transition-all duration-300">
-        <h1 className="text-3xl font-bold text-center text-blue-700 dark:text-blue-300 mb-6">
+        <h1 className=" font-saira text-4xl font-bold text-center text-blue-700 dark:text-blue-300 mb-6">
           Taskify
         </h1>
         <TaskForm onAddTask={addTask} />
