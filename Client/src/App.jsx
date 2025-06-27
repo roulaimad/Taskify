@@ -3,6 +3,7 @@ import TaskList from "./components/TaskList";
 import React, { useState, useEffect } from "react";
 import api from "./api";
 import { Toaster, toast } from "react-hot-toast";
+import ThemeToggle from "./components/ThemeToggle";
 
 function App() {
   const [tasks, setTasks] = useState([]);
@@ -11,7 +12,7 @@ function App() {
     try {
       const res = await api.get("/tasks");
       setTasks(res.data);
-      console.log("Fetched tasks:", res.data); // 👈 Add this line
+      console.log("Fetched tasks:", res.data);
     } catch (err) {
       toast.error("Failed to load tasks");
     }
@@ -36,6 +37,7 @@ function App() {
       toast.error("Failed to delete task");
     }
   };
+
   const updateTaskStatus = async (id, newStatus) => {
     try {
       const res = await api.patch(`/tasks/${id}`, { status: newStatus });
@@ -55,10 +57,11 @@ function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-blue-100 p-6">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-blue-100 dark:from-gray-900 dark:to-gray-800 p-6 transition-colors duration-300">
+      <ThemeToggle />
       <Toaster position="top-center" />
-      <div className="max-w-2xl mx-auto bg-white shadow-lg rounded-xl p-6">
-        <h1 className="text-3xl font-bold text-center text-blue-700 mb-6">
+      <div className="max-w-2xl mx-auto bg-white dark:bg-gray-900 shadow-lg rounded-xl p-6 border dark:border-gray-700 transition-all duration-300">
+        <h1 className="text-3xl font-bold text-center text-blue-700 dark:text-blue-300 mb-6">
           Taskify
         </h1>
         <TaskForm onAddTask={addTask} />
