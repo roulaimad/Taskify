@@ -24,13 +24,28 @@ app.get("/tasks", async (req, res) => {
 });
 
 app.post("/tasks", async (req, res) => {
-  const newTask = await Task.create({ title: req.body.title });
+  const { title, status } = req.body;
+  const newTask = await Task.create({
+    title,
+    status: status || "To Do",
+  });
+
   res.json(newTask);
 });
 
 app.delete("/tasks/:id", async (req, res) => {
   await Task.findByIdAndDelete(req.params.id);
   res.json({ success: true });
+});
+
+app.patch("/tasks/:id", async (req, res) => {
+  const { status } = req.body;
+  const updatedTask = await Task.findByIdAndUpdate(
+    req.params.id,
+    { status },
+    { new: true }
+  );
+  res.json(updatedTask);
 });
 
 // Start server

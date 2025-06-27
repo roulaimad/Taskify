@@ -11,6 +11,7 @@ function App() {
     try {
       const res = await api.get("/tasks");
       setTasks(res.data);
+      console.log("Fetched tasks:", res.data); // 👈 Add this line
     } catch (err) {
       toast.error("Failed to load tasks");
     }
@@ -35,6 +36,19 @@ function App() {
       toast.error("Failed to delete task");
     }
   };
+  const updateTaskStatus = async (id, newStatus) => {
+    try {
+      const res = await api.patch(`/tasks/${id}`, { status: newStatus });
+      setTasks((prev) =>
+        prev.map((task) =>
+          task._id === id ? { ...task, status: res.data.status } : task
+        )
+      );
+      toast.success("Status updated");
+    } catch (err) {
+      toast.error("Failed to update status");
+    }
+  };
 
   useEffect(() => {
     fetchTasks();
@@ -48,7 +62,11 @@ function App() {
           Taskify
         </h1>
         <TaskForm onAddTask={addTask} />
-        <TaskList tasks={tasks} onDelete={deleteTask} />
+        <TaskList
+          tasks={tasks}
+          onDelete={deleteTask}
+          onStatusChange={updateTaskStatus}
+        />
       </div>
     </div>
   );
