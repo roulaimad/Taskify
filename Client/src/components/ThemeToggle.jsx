@@ -22,7 +22,20 @@ function ThemeToggle() {
   return (
     <button
       onClick={toggleDarkMode}
-      className="absolute top-4 right-4  dark:bg-gray-700 bg-gray-200 text-sm text-gray-800 dark:text-gray-100 px-3 py-1 rounded"
+      className="    fixed top-4 right-4
+    px-4 py-2
+    rounded-full
+    bg-gradient-to-r from-indigo-500 to-purple-600
+    text-white
+    font-semibold
+    shadow-lg
+    hover:brightness-110
+    transition
+    duration-300
+    ease-in-out
+    focus:outline-none
+    focus:ring-2 focus:ring-indigo-400
+    dark:from-yellow-400 dark:to-yellow-300 dark:text-gray-900"
     >
       {isDark ? "☀️ Light" : "🌙 Dark"}
     </button>
